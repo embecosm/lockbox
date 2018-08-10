@@ -1,8 +1,8 @@
 Lockbox Stack Erase Demo
 ========================
 
-This repository contains code accompanying the blog post "Protecting secret data
-with Stack Erase".
+This repository contains code accompanying the blog post [Protecting secret data
+with Stack Erase](https://www.embecosm.com/2018/08/10/protecting-secre…with-stack-erase/).
 
 Note that this repository is something of a work-in-progress - some cleaning up
 may be required to make the build and exploit process more user-friendly.
