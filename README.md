@@ -13,7 +13,7 @@ Contents
 
 This repository contains (amongst other things):
 
-- `lockbox.cpp`: The lockbox application itself
+- `lockbox.cpp`: The lockbox application itself.
 - `include`, `arduinoCore`, and `insecureCore`: A subset of the Arduino library
   source code, both in its original form, and with the `printNumber` function
   protected with stack erase.
