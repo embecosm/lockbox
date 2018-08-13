@@ -1,8 +1,8 @@
 CC = riscv32-unknown-elf-gcc
 CXX = riscv32-unknown-elf-g++
 LD = riscv32-unknown-elf-g++
-OPENOCD = /home/sarah/SECURE/freedom-e-sdk/work/build/openocd/prefix/bin/openocd
-GDB = /home/sarah/SECURE/freedom-e-sdk/work/build/riscv-gnu-toolchain/riscv64-unknown-elf/prefix/bin/riscv64-unknown-elf-gdb
+OPENOCD = openocd
+GDB = riscv32-unknown-elf-gdb
 
 CPPFLAGS = -Iinclude -DF_CPU=16000000LL -DFREEDOM_E300_HIFIVE1
 
@@ -13,7 +13,7 @@ CXXFLAGS = ${CCFLAGS} -fno-rtti -fno-exceptions
 
 LDFLAGS = -T hifive1.ld -nostartfiles -Wl,-N -Wl,--gc-sections -nostdlib -Wl,--wrap=malloc -Wl,--wrap=free -Wl,--wrap=sbrk -Wl,-Map=lockbox.map
 
-OPENOCD_ARGS = -f /home/sarah/SECURE/freedom-e-sdk/bsp/env/freedom-e300-hifive1/openocd.cfg
+OPENOCD_ARGS = -f openocd.cfg
 
 all: lockbox.exe
 
@@ -40,3 +40,6 @@ run_openocd:
 run_gdb:
 	$(GDB) lockbox.exe -ex "set remotetimeout 240" -ex "target extended-remote localhost:3333"
 
+shellcode: shellcode.s shellcode.ld
+	riscv32-unknown-elf-as -march=rv32imac shellcode.s -o shellcode.o
+	riscv32-unknown-elf-ld -T shellcode.ld shellcode.o -o shellcode.bin -Map shellcode.map
