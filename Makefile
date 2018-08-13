@@ -43,3 +43,4 @@ run_gdb:
 shellcode: shellcode.s shellcode.ld
 	riscv32-unknown-elf-as -march=rv32imac shellcode.s -o shellcode.o
 	riscv32-unknown-elf-ld -T shellcode.ld shellcode.o -o shellcode.bin -Map shellcode.map
+	riscv32-unknown-elf-objcopy  shellcode.bin --dump-section .text=shellcode.data
